@@ -21,7 +21,7 @@ const Cards = () => {
 "
           alt="holis"
         />
-        <h3>Holis</h3>
+        <h3>Libro nuevo</h3>
         <p>1300$</p>
       </Card>
       <Card>
@@ -30,7 +30,7 @@ const Cards = () => {
 "
           alt="holis"
         />
-        <h3>Holis</h3>
+        <h3>Libro nuevo</h3>
         <p>1300$</p>
       </Card>
       <Card>
@@ -40,7 +40,7 @@ const Cards = () => {
           alt="holis"
         />
 
-        <h3>Holis</h3>
+        <h3>Libro nuevo</h3>
         <p>1300$</p>
       </Card>
       <Card>
@@ -49,7 +49,7 @@ const Cards = () => {
 "
           alt="holis"
         />
-        <h3>Holis</h3>
+        <h3>Libro nuevo</h3>
         <p>1300$</p>
       </Card>
       <Card>
@@ -58,7 +58,7 @@ const Cards = () => {
 "
           alt="holis"
         />
-        <h3>Holis</h3>
+        <h3>Libro nuevo</h3>
         <p>1300$</p>
       </Card>
     </Container>
