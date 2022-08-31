@@ -1,13 +1,18 @@
 import Footer from "./components/User/Footer";
 import Navbar from "./components/User/Navbar/Navbar";
-import Cards from "./components/User/Principal/Cards";
+
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/User/Home";
+import Who from "./components/User/Who";
 const App = () => {
   return (
     <>
       <main>
         <Navbar />
-        <header></header>
-        <Cards />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/who" element={<Who />} />
+        </Routes>
       </main>
       <Footer />
     </>
