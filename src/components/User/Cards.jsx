@@ -1,4 +1,9 @@
+import { nanoid } from "nanoid";
+import { useContext } from "react";
 import styled from "styled-components";
+import { LabordeContext } from "../../context/LabordeContext";
+import data from "./../../bookdata.json";
+
 const Container = styled.div`
   display: flex;
   justify-content: space-around;
@@ -6,6 +11,7 @@ const Container = styled.div`
 `;
 
 const Card = styled.div`
+  width: 25%;
   margin: 1rem;
   border: 1px solid black;
   img {
@@ -14,57 +20,28 @@ const Card = styled.div`
 `;
 
 const Cards = () => {
+  const { setCart, cart } = useContext(LabordeContext);
+  const handleCart = (item) => {
+    setCart([...cart, item]);
+  };
   return (
     <div>
       <h1>Los mas buscados</h1>
 
       <Container>
-        <Card>
-          <img
-            src="https://picsum.photos/200
-"
-            alt="holis"
-          />
-          <h3>Libro nuevo</h3>
-          <p>1300$</p>
-        </Card>
-        <Card>
-          <img
-            src="https://picsum.photos/200
-"
-            alt="holis"
-          />
-          <h3>Libro nuevo</h3>
-          <p>1300$</p>
-        </Card>
-        <Card>
-          <img
-            src="https://picsum.photos/200
-"
-            alt="holis"
-          />
-
-          <h3>Libro nuevo</h3>
-          <p>1300$</p>
-        </Card>
-        <Card>
-          <img
-            src="https://picsum.photos/200
-"
-            alt="holis"
-          />
-          <h3>Libro nuevo</h3>
-          <p>1300$</p>
-        </Card>
-        <Card>
-          <img
-            src="https://picsum.photos/200
-"
-            alt="holis"
-          />
-          <h3>Libro nuevo</h3>
-          <p>1300$</p>
-        </Card>
+        {data.map((elem) => (
+          <Card key={nanoid()}>
+            <img
+              onClick={() => handleCart(elem)}
+              src="https://picsum.photos/200
+  "
+              alt="holis"
+            />
+            <h3>{elem.title}</h3>
+            <small>{elem.isbn}</small>
+            <p>{elem.price}</p>
+          </Card>
+        ))}
       </Container>
     </div>
   );
