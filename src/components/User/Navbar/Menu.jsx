@@ -28,7 +28,9 @@ const Menu = () => {
         <li>Quienes Somos</li>
       </Link>
       <li>Contacto</li>
-      <li>Carrito</li>
+      <Link to="/cart">
+        <li>Carrito</li>
+      </Link>
     </Lista>
   );
 };
