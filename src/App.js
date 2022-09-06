@@ -1,10 +1,10 @@
-import Footer from "./components/User/Footer";
+import Footer from "./components/User/Footer/Footer";
 import Navbar from "./components/User/Navbar/Navbar";
 
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/User/Home";
 import Who from "./components/User/Who";
-import Cart from "./components/User/Cart";
+import Cart from "./components/User/Cart/Cart";
 const App = () => {
   return (
     <>
