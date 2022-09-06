@@ -59,8 +59,9 @@ const Title = styled.h1`
   text-align: center;
 `;
 const Cards = () => {
-  const { setCart, cart } = useContext(LabordeContext);
+  const { setCart, cart, setTotal, total } = useContext(LabordeContext);
   const handleCart = (item) => {
+    setTotal(total + item.price);
     setCart([...cart, item]);
   };
   return (
@@ -81,7 +82,7 @@ const Cards = () => {
               facilis eveniet commodi eligendi impedit!
             </p>
             <small>ISBN: {elem.isbn}</small>
-            <h4>{elem.price}</h4>
+            <h4>${elem.price}</h4>
             <DivButton>
               <Agregar onClick={() => handleCart(elem)}>
                 Agregar al carrito
