@@ -3,8 +3,14 @@ import styled from "styled-components";
 import logo from "./logo.png";
 import Menu from "./Menu";
 const Nav = styled.nav`
+  @media (min-width: 720px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Navbar = () => {
@@ -13,7 +19,6 @@ const Navbar = () => {
       <Link to="/">
         <img src={logo} alt="imagenlogo" />
       </Link>
-
       <Menu />
     </Nav>
   );
