@@ -2,6 +2,7 @@ import { nanoid } from "nanoid";
 import { useContext } from "react";
 import styled from "styled-components";
 import { LabordeContext } from "../../../context/LabordeContext";
+import CartItem from "./CartItem";
 import Payment from "./Payment";
 const Container = styled.section`
   background-color: #fff;
@@ -42,6 +43,9 @@ const Item = styled.div`
     height: 100%;
     width: 15rem;
     height: 11rem;
+    h3:nth-child(1) {
+      font-weight: 300;
+    }
   }
   div.image {
     align-items: center;
@@ -86,22 +90,7 @@ const Cart = () => {
         <input type="hidden" name="cart" value={JSON.stringify(cart)} />
         {cart.map((elem, index) => (
           <Item key={nanoid()}>
-            <div className="image">
-              <h3>Item #{index + 1}</h3>
-              <img src={elem.image} alt="imagen" />
-            </div>
-            <div>
-              <h3>Título</h3>
-              <h3>{elem.title}</h3>
-            </div>
-            <div className="isbn">
-              <h3>Código ISBN</h3>
-              <h3>{elem.isbn}</h3>
-            </div>
-            <div>
-              <h3 className="price">Precio</h3>
-              <h2>{elem.price}</h2>
-            </div>
+            <CartItem elem={elem} index={index} cart={cart} />
           </Item>
         ))}
         <Payment />
