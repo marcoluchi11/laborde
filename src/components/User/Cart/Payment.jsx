@@ -17,11 +17,10 @@ const BotonPago = styled.button`
   background-color: limegreen;
   color: #fff;
   border-radius: 5px;
-  transition: 1s background-color ease;
-  transition: 1s color ease;
+  transition: 0.7s opacity ease;
+
   &&:hover {
-    background-color: #fff;
-    color: limegreen;
+    opacity: 0.5;
   }
 `;
 const Payment = () => {
@@ -32,7 +31,7 @@ const Payment = () => {
         Continuar con la compra
       </BotonPago>
       <div>
-        <h3>Total: ${total}</h3>
+        <h3>Total: ${total.toFixed(2)}</h3>
       </div>
     </Pago>
   );
