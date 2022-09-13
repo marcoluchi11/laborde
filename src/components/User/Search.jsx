@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { LabordeContext } from "../../context/LabordeContext";
 const Formulario = styled.form`
@@ -26,10 +26,26 @@ const Formulario = styled.form`
   }
 `;
 const Search = () => {
-  const { search, setSearch } = useContext(LabordeContext);
+  const { search, setSearch, books, setBooks, setFilterBooks, filterBooks } =
+    useContext(LabordeContext);
+  useEffect(() => {
+    const copybooks = books;
+    const filBooks = copybooks.filter((item) => {
+      if (search === "") {
+        return true;
+      } else if (item.title.toLowerCase().includes(search)) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    setFilterBooks(filBooks);
+    //eslint-disable-next-line
+  }, [search]);
   const handleChange = (e) => setSearch(e.target.value);
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setSearch("");
   };
   return (
