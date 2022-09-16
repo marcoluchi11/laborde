@@ -16,7 +16,7 @@ const Title = styled.h1`
   text-align: center;
 `;
 const Cards = () => {
-  const { setCart, cart, setTotal, total, books, filterBooks } =
+  const { setCart, cart, setTotal, total, booklist, filterBooks } =
     useContext(LabordeContext);
   const handleCart = (item) => {
     setTotal(total + item.price);
@@ -30,7 +30,7 @@ const Cards = () => {
       </div>
       <Container>
         {filterBooks.length === 0
-          ? books.map((elem) => (
+          ? booklist.map((elem) => (
               <Card key={nanoid()} elem={elem} handleCart={handleCart} />
             ))
           : filterBooks.map((elem) => (

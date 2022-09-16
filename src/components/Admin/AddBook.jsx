@@ -42,18 +42,18 @@ const AddBook = () => {
   const [imageUpload, setImageUpload] = useState(null);
   const [subida, setSubida] = useState(false);
   const [book, setBook] = useState({
-    name: "",
+    title: "",
     desc: "",
     price: "",
+    isbn: "",
     image: "",
   });
   useEffect(() => {
     if (imageUpload) {
-      getDownloadURL(ref(storage, `images/${imageUpload.name}`)).then(
-        (link) => {
-          setBook({ ...book, image: link });
-        }
-      );
+      const imageRef = ref(storage, `images/${imageUpload.name}`);
+      getDownloadURL(imageRef).then((link) => {
+        setBook({ ...book, image: link });
+      });
     }
     //eslint-disable-next-line
   }, [subida]);
@@ -69,8 +69,8 @@ const AddBook = () => {
     try {
       setError({ state: false, message: "" });
       const bookData = book;
-      await setDoc(doc(db, "books", `${book.name}`), bookData);
-      setBook({ name: "", desc: "", price: "", image: "" });
+      await setDoc(doc(db, "books", `${book.title}`), bookData);
+      setBook({ title: "", desc: "", price: "", image: "", isbn: "" });
     } catch (err) {
       console.log("error bicho");
       setError({ message: err.message, state: true });
@@ -82,19 +82,19 @@ const AddBook = () => {
     if (imageUpload === null) return;
 
     const imageRef = ref(storage, `images/${imageUpload.name}`);
-    uploadBytes(imageRef, book.image).then(() => {
+    uploadBytes(imageRef, imageUpload).then(() => {
       console.log("image uploaded");
       setSubida(!subida);
     });
   };
   return (
     <Formulary onSubmit={handleSubmit}>
-      <label htmlFor="name">Nombre</label>
+      <label htmlFor="name">Titulo</label>
       <input
         type="text"
-        name="name"
-        id="name"
-        value={book.name}
+        name="title"
+        id="title"
+        value={book.title}
         onChange={handleChange}
       />
 
@@ -114,6 +114,14 @@ const AddBook = () => {
         id="price"
         value={book.price}
         onChange={(e) => setBook({ ...book, price: Number(e.target.value) })}
+      />
+      <label htmlFor="price">ISBN</label>
+      <input
+        type="text"
+        name="isbn"
+        id="isbn"
+        value={book.isbn}
+        onChange={(e) => setBook({ ...book, isbn: e.target.value })}
       />
       <label htmlFor="image">Imagen</label>
       <input
