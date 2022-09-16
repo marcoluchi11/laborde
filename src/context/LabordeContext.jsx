@@ -7,11 +7,23 @@ const LabordeProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
   const [books, setBooks] = useState(list);
+  const [user, setUser] = useState(false);
   const [filterBooks, setFilterBooks] = useState([]);
+  const [error, setError] = useState({ state: false, message: "" });
+  const [success, setSuccess] = useState({ state: false, message: "" });
+  const [loading, setLoading] = useState(false);
   return (
     <LabordeContext.Provider
       value={{
         search,
+        loading,
+        setLoading,
+        user,
+        error,
+        success,
+        setSuccess,
+        setError,
+        setUser,
         setSearch,
         cart,
         setCart,
