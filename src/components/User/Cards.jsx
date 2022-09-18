@@ -2,6 +2,7 @@ import { nanoid } from "nanoid";
 import { useContext } from "react";
 import styled from "styled-components";
 import { LabordeContext } from "../../context/LabordeContext";
+import Spinner from "../Spinner";
 import Card from "./Card";
 import FilterCards from "./FilterCards";
 
@@ -16,7 +17,7 @@ const Title = styled.h1`
   text-align: center;
 `;
 const Cards = () => {
-  const { setCart, cart, setTotal, total, booklist, filterBooks } =
+  const { setCart, cart, setTotal, total, booklist, filterBooks, loading } =
     useContext(LabordeContext);
   const handleCart = (item) => {
     setTotal(total + item.price);
@@ -29,13 +30,17 @@ const Cards = () => {
         <Title>Los más buscados</Title>
       </div>
       <Container>
-        {filterBooks.length === 0
-          ? booklist.map((elem) => (
-              <Card key={nanoid()} elem={elem} handleCart={handleCart} />
-            ))
-          : filterBooks.map((elem) => (
-              <FilterCards key={nanoid()} elem={elem} handleCart={handleCart} />
-            ))}
+        {loading ? (
+          <Spinner />
+        ) : filterBooks.length === 0 ? (
+          booklist.map((elem) => (
+            <Card key={nanoid()} elem={elem} handleCart={handleCart} />
+          ))
+        ) : (
+          filterBooks.map((elem) => (
+            <FilterCards key={nanoid()} elem={elem} handleCart={handleCart} />
+          ))
+        )}
       </Container>
     </div>
   );
