@@ -12,6 +12,8 @@ export const Item = styled.div`
     cursor: pointer;
     max-width: 100%;
     max-height: 100%;
+    height: 15rem;
+    width: 15rem;
   }
   h3 {
     text-overflow: ellipsis;
