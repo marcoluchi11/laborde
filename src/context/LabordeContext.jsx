@@ -19,8 +19,10 @@ const LabordeProvider = ({ children }) => {
   useEffect(() => {
     const getBooks = async () => {
       const booksRef = collection(db, "books");
+      setLoading(true);
       const data = await getDocs(booksRef);
       setBookList(data.docs.map((doc) => ({ ...doc.data() })));
+      setLoading(false);
     };
     getBooks();
   }, []);
