@@ -12,14 +12,26 @@ const Container = styled.div`
 const Social = () => {
   return (
     <Container>
-      <img
-        src="https://icongr.am/fontawesome/instagram.svg?size=25&color=currentColor"
-        alt="instagram"
-      />
-      <img
-        src="https://icongr.am/fontawesome/facebook-f.svg?size=25&color=currentColor"
-        alt="facebook"
-      />
+      <a
+        rel="noopener noreferrer"
+        target="_blank"
+        href="https://www.instagram.com/laborde.libreriayeditorial/"
+      >
+        <img
+          src="https://icongr.am/fontawesome/instagram.svg?size=25&color=currentColor"
+          alt="instagram"
+        />
+      </a>
+      <a
+        rel="noopener noreferrer"
+        target="_blank"
+        href="https://www.facebook.com/labordelibreriayeditorial"
+      >
+        <img
+          src="https://icongr.am/fontawesome/facebook-f.svg?size=25&color=currentColor"
+          alt="facebook"
+        />
+      </a>
       <img
         src="https://icongr.am/fontawesome/whatsapp.svg?size=25&color=currentColor"
         alt="whatsapp"
