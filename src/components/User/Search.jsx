@@ -26,10 +26,10 @@ const Formulario = styled.form`
   }
 `;
 const Search = () => {
-  const { search, setSearch, books, setBooks, setFilterBooks, filterBooks } =
+  const { search, setSearch, booklist, setFilterBooks } =
     useContext(LabordeContext);
   useEffect(() => {
-    const copybooks = books;
+    const copybooks = booklist;
     const filBooks = copybooks.filter((item) => {
       if (search === "") {
         return true;
@@ -39,6 +39,7 @@ const Search = () => {
         return false;
       }
     });
+    console.log(filBooks);
     setFilterBooks(filBooks);
     //eslint-disable-next-line
   }, [search]);
