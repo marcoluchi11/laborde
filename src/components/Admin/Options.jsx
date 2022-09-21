@@ -28,7 +28,9 @@ const Options = () => {
       <Link to="/admin/delete">
         <button>Eliminar Libro</button>
       </Link>
-      <button>Modificar Libro</button>
+      <Link to="/admin/update">
+        <button>Actualizar Precios</button>
+      </Link>
       <button>Ver Listado</button>
     </Container>
   );
