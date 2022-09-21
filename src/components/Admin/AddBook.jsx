@@ -8,6 +8,7 @@ import { LabordeContext } from "../../context/LabordeContext";
 import { storage, db } from "../../fbConfig";
 
 import Error from "../Error";
+import Success from "../Success";
 
 const Formulary = styled.form`
   display: flex;
@@ -37,7 +38,7 @@ const Formulary = styled.form`
 
 const AddBook = () => {
   // const mountainImagesRef = ref(storage, "images/mountains.jpg");
-  const { setError, error } = useContext(LabordeContext);
+  const { setError, error, success, setSuccess } = useContext(LabordeContext);
 
   const [imageUpload, setImageUpload] = useState(null);
   const [subida, setSubida] = useState(false);
@@ -47,6 +48,7 @@ const AddBook = () => {
     price: "",
     isbn: "",
     image: "",
+    author: "",
   });
   useEffect(() => {
     if (imageUpload) {
@@ -62,7 +64,16 @@ const AddBook = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if ([book.name, book.desc, book.price].includes("")) {
+    if (
+      [
+        book.name,
+        book.desc,
+        book.price,
+        book.isbn,
+        book.published,
+        book.category,
+      ].includes("")
+    ) {
       setError({ state: true, message: "Completa todos los campos" });
       return;
     }
@@ -70,7 +81,16 @@ const AddBook = () => {
       setError({ state: false, message: "" });
       const bookData = book;
       await setDoc(doc(db, "books", `${book.title}`), bookData);
-      setBook({ title: "", desc: "", price: "", image: "", isbn: "" });
+      setBook({
+        title: "",
+        category: "",
+        desc: "",
+        price: "",
+        image: "",
+        isbn: "",
+        author: "",
+        published: "",
+      });
     } catch (err) {
       console.log("error bicho");
       setError({ message: err.message, state: true });
@@ -83,8 +103,11 @@ const AddBook = () => {
 
     const imageRef = ref(storage, `images/${imageUpload.name}`);
     uploadBytes(imageRef, imageUpload).then(() => {
-      console.log("image uploaded");
+      setSuccess({ ...success, state: true });
       setSubida(!subida);
+      setTimeout(() => {
+        setSuccess({ ...success, state: false });
+      }, 3000);
     });
   };
   return (
@@ -97,7 +120,23 @@ const AddBook = () => {
         value={book.title}
         onChange={handleChange}
       />
-
+      <label htmlFor="category">Categoría</label>
+      <select onChange={handleChange} name="category" id="category">
+        <option value={""}>--Selecciona Categoria</option>
+        <option value="bio">Biología</option>
+        <option value="psi"> Psicología</option>
+        <option value="sports">Deportes</option>
+        <option value="right">Derecho</option>
+        <option value="scifi">Ciencia Ficción</option>
+      </select>
+      <label htmlFor="author">Autor</label>
+      <input
+        type="text"
+        name="author"
+        id="author"
+        value={book.author}
+        onChange={handleChange}
+      />
       <label htmlFor="desc">Descripcion</label>
       <textarea
         name="desc"
@@ -115,13 +154,21 @@ const AddBook = () => {
         value={book.price}
         onChange={(e) => setBook({ ...book, price: Number(e.target.value) })}
       />
-      <label htmlFor="price">ISBN</label>
+      <label htmlFor="isbn">ISBN</label>
       <input
         type="text"
         name="isbn"
         id="isbn"
         value={book.isbn}
         onChange={(e) => setBook({ ...book, isbn: e.target.value })}
+      />
+      <label htmlFor="published">Año publicado</label>
+      <input
+        type="number"
+        name="published"
+        id="published"
+        value={book.published}
+        onChange={(e) => setBook({ ...book, published: e.target.value })}
       />
       <label htmlFor="image">Imagen</label>
       <input
@@ -133,7 +180,7 @@ const AddBook = () => {
         }}
       />
       <button onClick={handleUpload}>Upload</button>
-
+      {success.state && <Success message="Imagen subida!" />}
       {error.state && <Error message={error.message} />}
       <input type="submit" value="Agregar" />
     </Formulary>
