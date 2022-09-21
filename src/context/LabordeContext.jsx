@@ -16,16 +16,14 @@ const LabordeProvider = ({ children }) => {
   const [success, setSuccess] = useState({ state: false, message: "" });
   const [loading, setLoading] = useState(false);
   const [booklist, setBookList] = useState([]);
-  useEffect(() => {
-    const getBooks = async () => {
-      const booksRef = collection(db, "books");
-      setLoading(true);
-      const data = await getDocs(booksRef);
-      setBookList(data.docs.map((doc) => ({ ...doc.data() })));
-      setLoading(false);
-    };
-    getBooks();
-  }, []);
+  const getBooks = async () => {
+    const booksRef = collection(db, "books");
+    setLoading(true);
+    const data = await getDocs(booksRef);
+    setBookList(data.docs.map((doc) => ({ ...doc.data() })));
+    setLoading(false);
+  };
+
   return (
     <LabordeContext.Provider
       value={{
@@ -33,6 +31,7 @@ const LabordeProvider = ({ children }) => {
         setBookList,
         search,
         loading,
+        getBooks,
         setLoading,
         user,
         error,
