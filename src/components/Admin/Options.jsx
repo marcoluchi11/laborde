@@ -20,16 +20,14 @@ const Container = styled.div`
   }
 `;
 const Options = () => {
-  const addBook = async () => {
-    // AGREGAR LIBRO CON UN FORM, QUE TENGA NOMBRE DEL LIBRO, ISBN, PRECIO, BREVE DESCRIPCION E IMAGEN.
-    // SI HAY ERROR, INFORMARLO, INPUT VACIOS O MAL PUESTOS ETC. AVISAR CUANDO SEA EXITOSOSO EL AGREGADO
-  };
   return (
     <Container>
       <Link to="/admin/add">
         <button>Agregar Libro</button>
       </Link>
-      <button>Eliminar Libro</button>
+      <Link to="/admin/delete">
+        <button>Eliminar Libro</button>
+      </Link>
       <button>Modificar Libro</button>
       <button>Ver Listado</button>
     </Container>
