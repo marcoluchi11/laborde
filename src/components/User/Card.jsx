@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import styled from "styled-components";
+import { getCategory } from "../helpers";
 export const Item = styled.div`
   margin: 1rem;
   flex-direction: column;
@@ -16,6 +17,7 @@ export const Item = styled.div`
     width: 15rem;
   }
   h3 {
+    margin: 0;
     text-overflow: ellipsis;
     overflow: hidden;
     width: 160px;
@@ -29,6 +31,12 @@ export const Item = styled.div`
     height: 1.2em;
     white-space: nowrap;
     font-weight: 100;
+  }
+  .category {
+    color: #998;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
   }
 `;
 export const DivButton = styled.div`
@@ -51,7 +59,9 @@ const Card = ({ elem, handleCart }) => {
       <div>
         <img src={elem.image} alt="holis" />
       </div>
+      <small className="category">{getCategory(elem.category)}</small>
       <h3>{elem.title}</h3>
+      <h5>{elem.author.toUpperCase()}</h5>
       <p>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla,
         reprehenderit tempora velit exercitationem deserunt perferendis facilis
