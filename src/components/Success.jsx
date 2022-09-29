@@ -6,7 +6,7 @@ const Container = styled.div`
   margin: 1rem 0;
   p {
     color: #fff;
-
+    text-align: center;
     padding: 0 2rem;
   }
 `;
