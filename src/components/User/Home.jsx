@@ -6,8 +6,9 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { LabordeContext } from "../../context/LabordeContext";
 const Home = () => {
-  const { getBooks } = useContext(LabordeContext);
+  const { getBooks, booklist } = useContext(LabordeContext);
   useEffect(() => {
+    if (booklist.length !== 0) return;
     getBooks();
     //eslint-disable-next-line
   }, []);
