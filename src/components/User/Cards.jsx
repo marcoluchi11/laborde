@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import { useEffect } from "react";
 import { useContext } from "react";
 import styled from "styled-components";
 import { LabordeContext } from "../../context/LabordeContext";
@@ -17,12 +18,28 @@ const Title = styled.h1`
   text-align: center;
 `;
 const Cards = () => {
-  const { setCart, cart, setTotal, total, booklist, filterBooks, loading } =
-    useContext(LabordeContext);
+  const {
+    setCart,
+    cart,
+    setTotal,
+    total,
+    booklist,
+    filterBooks,
+    loading,
+    getLocal,
+  } = useContext(LabordeContext);
+  useEffect(() => {
+    getLocal();
+    //eslint-disable-next-line
+  }, []);
   const handleCart = (item) => {
     setTotal(total + item.price);
 
     setCart([...cart, { ...item, id: nanoid() }]);
+    localStorage.setItem(
+      "cart",
+      JSON.stringify([...cart, { ...item, id: nanoid() }])
+    );
   };
   return (
     <div>
