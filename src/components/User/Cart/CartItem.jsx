@@ -15,6 +15,7 @@ const CartItem = ({ elem, index }) => {
   const { cart, setCart, setTotal, total } = useContext(LabordeContext);
   const handleDelete = (elem) => {
     const cartUpdated = cart.filter((item) => item.id !== elem.id);
+    localStorage.setItem("cart", JSON.stringify(cartUpdated));
     setTotal(total - elem.price);
     setCart(cartUpdated);
   };
@@ -34,7 +35,7 @@ const CartItem = ({ elem, index }) => {
       </div>
       <div>
         <h3 className="price">Precio</h3>
-        <h2>${elem.price}</h2>
+        <h2>${elem.price.toFixed(2)}</h2>
       </div>
       <IconContainer>
         <h3>Eliminar</h3>

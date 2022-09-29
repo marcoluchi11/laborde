@@ -1,10 +1,10 @@
 import { nanoid } from "nanoid";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { LabordeContext } from "../../../context/LabordeContext";
 import CartItem from "./CartItem";
 import Payment from "./Payment";
-const Container = styled.section`
+export const Container = styled.section`
   background-color: #fff;
   margin: 0 1rem;
   border-radius: 10px;
@@ -50,7 +50,7 @@ const Item = styled.div`
   div.image {
     align-items: center;
   }
-  img {
+  img.item {
     border-radius: 50%;
     width: 5rem;
     height: 5rem;
@@ -71,16 +71,29 @@ const NoProducts = styled.section`
   text-align: center;
   height: 50vh;
   h1 {
-    padding: 1rem;
+    padding: 0 1rem;
+    margin: 0;
+    font-weight: 400;
+  }
+  p {
+    margin-top: 0.3rem;
+    padding: 0;
+
+    font-weight: 300;
   }
 `;
 
 const Cart = () => {
-  const { cart } = useContext(LabordeContext);
+  const { cart, setTotal, setCart, getLocal } = useContext(LabordeContext);
+  useEffect(() => {
+    getLocal();
+    //eslint-disable-next-line
+  }, [setCart, setTotal]);
   if (cart.length === 0)
     return (
       <NoProducts>
         <h1>No hay elementos en el carrito...</h1>
+        <p>Agrega productos desde la pagina principal</p>
       </NoProducts>
     );
   return (
