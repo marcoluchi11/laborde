@@ -31,7 +31,9 @@ const Options = () => {
       <Link to="/admin/update">
         <button>Actualizar Precios</button>
       </Link>
-      <button>Ver Listado</button>
+      <Link to="/admin/edit">
+        <button>Ver Listado para editar</button>
+      </Link>
     </Container>
   );
 };
