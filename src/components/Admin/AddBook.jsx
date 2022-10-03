@@ -168,7 +168,9 @@ const AddBook = () => {
         name="published"
         id="published"
         value={book.published}
-        onChange={(e) => setBook({ ...book, published: e.target.value })}
+        onChange={(e) =>
+          setBook({ ...book, published: Number(e.target.value) })
+        }
       />
       <label htmlFor="image">Imagen</label>
       <input
