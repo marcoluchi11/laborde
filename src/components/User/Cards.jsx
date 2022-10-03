@@ -4,8 +4,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { LabordeContext } from "../../context/LabordeContext";
 import Spinner from "../Spinner";
-import Card from "./Card";
-import FilterCards from "./FilterCards";
+import BookList from "./BookList";
 
 const Container = styled.div`
   display: flex;
@@ -18,16 +17,8 @@ const Title = styled.h1`
   text-align: center;
 `;
 const Cards = () => {
-  const {
-    setCart,
-    cart,
-    setTotal,
-    total,
-    booklist,
-    filterBooks,
-    loading,
-    getLocal,
-  } = useContext(LabordeContext);
+  const { setCart, cart, setTotal, total, loading, getLocal } =
+    useContext(LabordeContext);
   useEffect(() => {
     getLocal();
     //eslint-disable-next-line
@@ -47,17 +38,7 @@ const Cards = () => {
         <Title>Los más buscados</Title>
       </div>
       <Container>
-        {loading ? (
-          <Spinner />
-        ) : filterBooks.length === 0 ? (
-          booklist.map((elem) => (
-            <Card key={nanoid()} elem={elem} handleCart={handleCart} />
-          ))
-        ) : (
-          filterBooks.map((elem) => (
-            <FilterCards key={nanoid()} elem={elem} handleCart={handleCart} />
-          ))
-        )}
+        {loading ? <Spinner /> : <BookList handleCart={handleCart} />}
       </Container>
     </div>
   );
