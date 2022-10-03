@@ -1,5 +1,5 @@
 import styled from "styled-components";
-const Formulary = styled.form`
+export const Formulary = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
