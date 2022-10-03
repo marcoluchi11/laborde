@@ -1,5 +1,4 @@
 import { collection, getDocs } from "firebase/firestore";
-import { useEffect } from "react";
 import { createContext, useState } from "react";
 import { db } from "../fbConfig";
 
@@ -16,6 +15,7 @@ const LabordeProvider = ({ children }) => {
   const [success, setSuccess] = useState({ state: false, message: "" });
   const [loading, setLoading] = useState(false);
   const [booklist, setBookList] = useState([]);
+  const [cardDetail, setCardDetail] = useState(false);
   const getBooks = async () => {
     const booksRef = collection(db, "books");
     setLoading(true);
@@ -23,11 +23,23 @@ const LabordeProvider = ({ children }) => {
     setBookList(data.docs.map((doc) => ({ ...doc.data() })));
     setLoading(false);
   };
-
+  const getLocal = () => {
+    const local = JSON.parse(localStorage.getItem("cart"));
+    if (local) {
+      let totalLocal = 0;
+      local.forEach((product) => {
+        totalLocal += product.price;
+      });
+      setTotal(totalLocal);
+      setCart(local);
+    }
+  };
   return (
     <LabordeContext.Provider
       value={{
         booklist,
+        cardDetail,
+        setCardDetail,
         setBookList,
         search,
         loading,
@@ -36,6 +48,7 @@ const LabordeProvider = ({ children }) => {
         user,
         error,
         success,
+        getLocal,
         setSuccess,
         setError,
         setUser,
