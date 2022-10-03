@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { LabordeContext } from "../../context/LabordeContext";
 import Spinner from "../Spinner";
 import BookList from "./BookList";
-
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -45,8 +44,3 @@ const Cards = () => {
 };
 
 export default Cards;
-// DISEÑAR CARDS
-// ACOMODAR CONTACT
-// MEJORAR FOOTER
-// MAS LINDO <NAVBAR
-// QUE SEA TODO BIEN RESPONSIVE
