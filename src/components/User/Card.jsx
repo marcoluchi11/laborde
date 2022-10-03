@@ -1,5 +1,7 @@
 import { nanoid } from "nanoid";
+import { useContext } from "react";
 import styled from "styled-components";
+import { LabordeContext } from "../../context/LabordeContext";
 import { getCategory } from "../helpers";
 export const Item = styled.div`
   margin: 1rem;
@@ -54,21 +56,20 @@ export const Agregar = styled.button`
   cursor: pointer;
 `;
 const Card = ({ elem, handleCart }) => {
+  const { setCardDetail } = useContext(LabordeContext);
+  const handleClick = (elem) => {
+    setCardDetail(elem);
+  };
   return (
     <Item key={nanoid()}>
       <div>
         <img src={elem.image} alt="holis" />
       </div>
       <small className="category">{getCategory(elem.category)}</small>
-      <h3>{elem.title}</h3>
+      <h3 onClick={() => handleClick(elem)}>{elem.title}</h3>
       <h5>{elem.author.toUpperCase()}</h5>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla,
-        reprehenderit tempora velit exercitationem deserunt perferendis facilis
-        eveniet commodi eligendi impedit!
-      </p>
       <small>ISBN: {elem.isbn}</small>
-      <h4>${elem.price}</h4>
+      <h4>${elem.price.toFixed(2)}</h4>
       <DivButton>
         <Agregar onClick={() => handleCart(elem)}>Agregar al carrito</Agregar>
       </DivButton>
