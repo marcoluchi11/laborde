@@ -51,7 +51,8 @@ export const Agregar = styled.button`
   background-color: #26b16d;
   color: #fff;
   border-radius: 10px;
-  margin: 1rem 0;
+  margin: 1rem 0.4rem;
+  width: 70%;
   padding: 0.5rem;
   cursor: pointer;
 `;
@@ -63,7 +64,7 @@ const Card = ({ elem, handleCart }) => {
   return (
     <Item key={nanoid()}>
       <div>
-        <img src={elem.image} alt="holis" />
+        <img onClick={() => handleClick(elem)} src={elem.image} alt="holis" />
       </div>
       <small className="category">{getCategory(elem.category)}</small>
       <h3 onClick={() => handleClick(elem)}>{elem.title}</h3>
