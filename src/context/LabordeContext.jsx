@@ -1,4 +1,5 @@
 import { collection, getDocs } from "firebase/firestore";
+import { nanoid } from "nanoid";
 import { createContext, useState } from "react";
 import { db } from "../fbConfig";
 
@@ -34,6 +35,19 @@ const LabordeProvider = ({ children }) => {
       setCart(local);
     }
   };
+  const handleCart = (item) => {
+    setTotal(total + item.price);
+
+    setCart([...cart, { ...item, id: nanoid() }]);
+    localStorage.setItem(
+      "cart",
+      JSON.stringify([...cart, { ...item, id: nanoid() }])
+    );
+    setSuccess({ state: true, message: "Agregado al carrito con exito" });
+    setTimeout(() => {
+      setSuccess({ state: false, message: "" });
+    }, 3000);
+  };
   return (
     <LabordeContext.Provider
       value={{
@@ -48,6 +62,7 @@ const LabordeProvider = ({ children }) => {
         user,
         error,
         success,
+        handleCart,
         getLocal,
         setSuccess,
         setError,
