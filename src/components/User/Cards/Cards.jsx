@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import { useEffect } from "react";
 import { useContext } from "react";
 import styled from "styled-components";
@@ -16,25 +15,12 @@ const Title = styled.h1`
   text-align: center;
 `;
 const Cards = () => {
-  const { setCart, cart, setTotal, total, loading, getLocal, setSuccess } =
-    useContext(LabordeContext);
+  const { loading, getLocal, handleCart } = useContext(LabordeContext);
   useEffect(() => {
     getLocal();
     //eslint-disable-next-line
   }, []);
-  const handleCart = (item) => {
-    setTotal(total + item.price);
 
-    setCart([...cart, { ...item, id: nanoid() }]);
-    localStorage.setItem(
-      "cart",
-      JSON.stringify([...cart, { ...item, id: nanoid() }])
-    );
-    setSuccess({ state: true, message: "Agregado al carrito con exito" });
-    setTimeout(() => {
-      setSuccess({ state: false, message: "" });
-    }, 3000);
-  };
   return (
     <div>
       <div>

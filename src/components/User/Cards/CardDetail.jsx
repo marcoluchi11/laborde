@@ -2,7 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { LabordeContext } from "../../../context/LabordeContext";
 import { getCategory } from "../../helpers";
-
+import { Link } from "react-router-dom";
 const Container = styled.div`
   @media (min-width: 720px) {
     width: 100%;
@@ -45,7 +45,7 @@ const Agregar = styled.button`
   cursor: pointer;
 `;
 const CardDetail = () => {
-  const { cardDetail, setCardDetail } = useContext(LabordeContext);
+  const { cardDetail, setCardDetail, handleCart } = useContext(LabordeContext);
   return (
     <Container>
       <div className="imagen">
@@ -57,9 +57,13 @@ const CardDetail = () => {
         <h3>{cardDetail.author.toUpperCase()}</h3>
         <p>{cardDetail.desc}</p>
         <small>Año de Publicacion: {cardDetail.published}</small>
-        <h3>${cardDetail.price}</h3>
-        <Agregar>Agregar al Carrito</Agregar>
-        <Atras onClick={() => setCardDetail(false)}>Atrás</Atras>
+        <h3>${cardDetail.price.toFixed(2)}</h3>
+        <Agregar onClick={() => handleCart(cardDetail)}>
+          Agregar al Carrito
+        </Agregar>
+        <Link to="/">
+          <Atras onClick={() => setCardDetail({})}>Atrás</Atras>
+        </Link>
       </div>
     </Container>
   );

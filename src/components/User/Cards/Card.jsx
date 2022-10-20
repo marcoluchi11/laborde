@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { LabordeContext } from "../../../context/LabordeContext";
 import { getCategory } from "../../helpers";
@@ -64,10 +65,14 @@ const Card = ({ elem, handleCart }) => {
   return (
     <Item key={nanoid()}>
       <div>
-        <img onClick={() => handleClick(elem)} src={elem.image} alt="holis" />
+        <Link to={`/${elem.id}`}>
+          <img onClick={() => handleClick(elem)} src={elem.image} alt="cover" />
+        </Link>
       </div>
       <small className="category">{getCategory(elem.category)}</small>
-      <h3 onClick={() => handleClick(elem)}>{elem.title}</h3>
+      <Link to={`/${elem.id}`}>
+        <h3 onClick={() => handleClick(elem)}>{elem.title}</h3>
+      </Link>
       <h5>{elem.author.toUpperCase()}</h5>
       <small>ISBN: {elem.isbn}</small>
       <h4>${elem.price.toFixed(2)}</h4>
