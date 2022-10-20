@@ -1,7 +1,7 @@
 import Header from "./Header";
 import Search from "./Search";
-import Cards from "./Cards";
-import Contact from "./Contact";
+import Cards from "./Cards/Cards";
+import Contact from "./Contact/Contact";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { LabordeContext } from "../../context/LabordeContext";

@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 import { useContext } from "react";
 import { LabordeContext } from "../../context/LabordeContext";
 import { getCategory } from "../helpers";
-import { Agregar, DivButton, Item } from "./Card";
+import { Agregar, DivButton, Item } from "../User/Cards/Card";
 
 const FilterCards = ({ elem, handleCart }) => {
   const { setCardDetail } = useContext(LabordeContext);

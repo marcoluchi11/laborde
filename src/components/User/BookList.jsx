@@ -1,8 +1,8 @@
 import { nanoid } from "nanoid";
 import { useContext } from "react";
-import CardDetail from "./CardDetail";
+import CardDetail from "../User/Cards/CardDetail";
 import { LabordeContext } from "../../context/LabordeContext";
-import Card from "./Card";
+import Card from "../User/Cards/Card";
 import FilterCards from "./FilterCards";
 const BookList = ({ handleCart }) => {
   const { filterBooks, booklist, cardDetail } = useContext(LabordeContext);
