@@ -1,8 +1,8 @@
 import { nanoid } from "nanoid";
 import { useContext } from "react";
 import styled from "styled-components";
-import { LabordeContext } from "../../context/LabordeContext";
-import { getCategory } from "../helpers";
+import { LabordeContext } from "../../../context/LabordeContext";
+import { getCategory } from "../../helpers";
 export const Item = styled.div`
   margin: 1rem;
   flex-direction: column;

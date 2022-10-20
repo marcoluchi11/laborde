@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { LabordeContext } from "../../context/LabordeContext";
-import { getCategory } from "../helpers";
+import { LabordeContext } from "../../../context/LabordeContext";
+import { getCategory } from "../../helpers";
 
 const Container = styled.div`
   @media (min-width: 720px) {

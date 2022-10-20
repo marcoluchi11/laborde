@@ -2,9 +2,9 @@ import { nanoid } from "nanoid";
 import { useEffect } from "react";
 import { useContext } from "react";
 import styled from "styled-components";
-import { LabordeContext } from "../../context/LabordeContext";
-import Spinner from "../Spinner";
-import BookList from "./BookList";
+import { LabordeContext } from "../../../context/LabordeContext";
+import Spinner from "../../Spinner";
+import BookList from "../BookList";
 const Container = styled.div`
   display: flex;
   justify-content: center;
