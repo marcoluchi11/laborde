@@ -14,6 +14,7 @@ import EditBook from "./components/Admin/EditBook";
 import { useContext } from "react";
 import { LabordeContext } from "./context/LabordeContext";
 import styled from "styled-components";
+import CardDetail from "./components/User/Cards/CardDetail";
 const Exito = styled.div`
   position: fixed;
   right: 25px;
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/pending" element={<Pending />} />
           <Route path="/failure" element={<Failure />} />
+          <Route path="/:id" element={<CardDetail />} />
         </Routes>
       </main>
       <Footer />
