@@ -16,7 +16,7 @@ const Title = styled.h1`
   text-align: center;
 `;
 const Cards = () => {
-  const { setCart, cart, setTotal, total, loading, getLocal } =
+  const { setCart, cart, setTotal, total, loading, getLocal, setSuccess } =
     useContext(LabordeContext);
   useEffect(() => {
     getLocal();
@@ -30,6 +30,10 @@ const Cards = () => {
       "cart",
       JSON.stringify([...cart, { ...item, id: nanoid() }])
     );
+    setSuccess({ state: true, message: "Agregado al carrito con exito" });
+    setTimeout(() => {
+      setSuccess({ state: false, message: "" });
+    }, 3000);
   };
   return (
     <div>
