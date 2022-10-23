@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "./logo.png";
-import Menu from "./Menu";
+import DesktopNav from "./DesktopNav";
 const Nav = styled.nav`
+  /* position: sticky; */
   @media (min-width: 720px) {
     display: flex;
     flex-direction: row;
@@ -19,7 +20,7 @@ const Navbar = () => {
       <Link to="/">
         <img src={logo} alt="imagenlogo" />
       </Link>
-      <Menu />
+      <DesktopNav />
     </Nav>
   );
 };
