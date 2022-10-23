@@ -30,7 +30,7 @@ const Lista = styled.ul`
     cursor: pointer;
   }
 `;
-const Menu = () => {
+const DesktopNav = () => {
   const { cart } = useContext(LabordeContext);
   return (
     <Lista>
@@ -48,4 +48,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default DesktopNav;
